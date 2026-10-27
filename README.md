@@ -1,32 +1,50 @@
-# React + TypeScript + Vite
+# Soham Gurav — Personal Portfolio & Systems Engineering
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Official personal portfolio website of **Soham Gurav** (Soham Vijay Gurav) — Final-year Computer Science Engineering student specializing in IoT, Cyber Security, Blockchain Technology, and Process Automation.
 
-Currently, two official plugins are available:
+## 🚀 Overview & Features
+- **Responsive Architecture:** Fully optimized for mobile phones (320px, 375px, 390px, 430px), tablets, and desktops.
+- **Cyber-Glassmorphism UI:** Custom futuristic platinum silver and dark cyber aesthetic inspired by high-tech engineering visuals.
+- **Swaraajya E-Voting Demo:** Integrated blockchain e-voting verification portal with cryptographic ballot simulation and live Recharts tally.
+- **Inventory Management Simulator:** Real-time stock monitor, low-threshold automated dispatch alert triggers, and database audit stream.
+- **Production-Ready SEO:** Full Open Graph, Twitter cards, robots.txt, sitemap.xml, and `schema.org/Person` JSON-LD structured data.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🛠️ Tech Stack
+- **Frontend Framework:** React 19, TypeScript, Vite
+- **Styling:** Custom Glassmorphic CSS Theme, Tailwind CSS
+- **Icons & Data Visualization:** Lucide React, Recharts
+- **Blockchain & Automation Integration:** Solidity, Ethereum, Web3.js, UiPath RPA, Python
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+## 📁 Project Structure
+```text
+├── public/              # Robots.txt, sitemap.xml, _redirects, favicon
+├── src/
+│   ├── assets/          # Profile imagery & visual assets
+│   ├── components/      # Responsive UI sections & project modal simulators
+│   ├── data/            # Portfolio information & verified credentials
+│   ├── types/           # TypeScript interfaces & definitions
+│   ├── App.tsx          # Root application component & routing
+│   └── index.css        # Global design tokens & responsive media queries
+├── index.html           # HTML5 entry with search engine indexing tags
+├── vercel.json          # Vercel SPA configuration
+└── package.json         # Dependencies & project scripts
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+## 💻 Local Setup & Development
+
+```bash
+# 1. Clone repository
+git clone https://github.com/soham8855/soham.git
+
+# 2. Install dependencies
+npm install
+
+# 3. Launch development server
+npm run dev
+
+# 4. Generate production build
+npm run build
+```
+
+---
+© 2026 Soham Vijay Gurav. All rights reserved.
