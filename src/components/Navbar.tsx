@@ -108,7 +108,7 @@ export const Navbar: React.FC<NavbarProps> = ({ theme, toggleTheme, onOpenResume
               style={{
                 fontFamily: 'Space Grotesk, sans-serif',
                 fontWeight: 800,
-                fontSize: '1.25rem',
+                fontSize: 'clamp(1.05rem, 4vw, 1.25rem)',
                 letterSpacing: '0.04em',
                 background: 'var(--hero-name-gradient)',
                 WebkitBackgroundClip: 'text',
@@ -120,7 +120,7 @@ export const Navbar: React.FC<NavbarProps> = ({ theme, toggleTheme, onOpenResume
             </span>
             <span
               style={{
-                fontSize: '0.7rem',
+                fontSize: '0.65rem',
                 color: 'var(--text-muted)',
                 letterSpacing: '0.08em',
                 fontWeight: 600,
@@ -233,14 +233,19 @@ export const Navbar: React.FC<NavbarProps> = ({ theme, toggleTheme, onOpenResume
             onClick={toggleTheme}
             aria-label="Toggle theme"
             style={{
-              padding: '0.5rem',
-              borderRadius: '0.5rem',
+              width: '42px',
+              height: '42px',
+              minWidth: '42px',
+              minHeight: '42px',
+              borderRadius: '0.6rem',
               background: 'var(--bg-card)',
               border: '1px solid var(--border-subtle)',
               color: 'var(--text-primary)',
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'center'
+              justifyContent: 'center',
+              cursor: 'pointer',
+              touchAction: 'manipulation'
             }}
           >
             {theme === 'silver' ? <Moon size={18} /> : <Sun size={18} />}
@@ -248,16 +253,23 @@ export const Navbar: React.FC<NavbarProps> = ({ theme, toggleTheme, onOpenResume
 
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Open navigation menu"
+            aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={mobileMenuOpen}
             style={{
-              padding: '0.5rem',
-              borderRadius: '0.5rem',
-              background: 'var(--bg-card)',
+              width: '42px',
+              height: '42px',
+              minWidth: '42px',
+              minHeight: '42px',
+              borderRadius: '0.6rem',
+              background: mobileMenuOpen ? 'var(--accent-primary)' : 'var(--bg-card)',
               border: '1px solid var(--border-subtle)',
-              color: 'var(--text-primary)',
+              color: mobileMenuOpen ? '#ffffff' : 'var(--text-primary)',
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'center'
+              justifyContent: 'center',
+              cursor: 'pointer',
+              touchAction: 'manipulation',
+              transition: 'all 0.2s ease'
             }}
           >
             {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
@@ -266,65 +278,99 @@ export const Navbar: React.FC<NavbarProps> = ({ theme, toggleTheme, onOpenResume
 
       </div>
 
-      {/* Mobile Drawer */}
+      {/* Mobile Drawer Backdrop & Menu */}
       {mobileMenuOpen && (
-        <div
-          style={{
-            position: 'absolute',
-            top: '100%',
-            left: 0,
-            right: 0,
-            background: 'var(--bg-card-hover)',
-            backdropFilter: 'blur(24px)',
-            WebkitBackdropFilter: 'blur(24px)',
-            borderBottom: '1px solid var(--border-subtle)',
-            padding: '1.5rem',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '1rem',
-            boxShadow: '0 20px 40px rgba(0,0,0,0.15)',
-            animation: 'fadeIn 0.2s ease-out'
-          }}
-        >
-          {navLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              onClick={handleLinkClick}
-              style={{
-                fontSize: '1rem',
-                fontWeight: 600,
-                color: 'var(--text-primary)',
-                padding: '0.5rem 0',
-                borderBottom: '1px solid var(--border-subtle)'
-              }}
-            >
-              {link.label}
-            </a>
-          ))}
+        <>
+          {/* Backdrop Overlay to close on tap outside */}
+          <div
+            onClick={() => setMobileMenuOpen(false)}
+            style={{
+              position: 'fixed',
+              top: '64px',
+              left: 0,
+              right: 0,
+              bottom: 0,
+              background: 'rgba(0, 0, 0, 0.4)',
+              backdropFilter: 'blur(4px)',
+              WebkitBackdropFilter: 'blur(4px)',
+              zIndex: 90
+            }}
+          />
 
-          <div style={{ display: 'flex', gap: '0.75rem', marginTop: '0.5rem' }}>
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                onOpenResume();
-              }}
-              className="btn-secondary"
-              style={{ flex: 1, padding: '0.75rem' }}
-            >
-              <FileText size={16} /> Resume
-            </button>
+          <nav
+            aria-label="Mobile Navigation"
+            style={{
+              position: 'absolute',
+              top: '100%',
+              left: 0,
+              right: 0,
+              background: 'var(--bg-card-hover)',
+              backdropFilter: 'blur(24px)',
+              WebkitBackdropFilter: 'blur(24px)',
+              borderBottom: '1px solid var(--border-subtle)',
+              padding: '1.25rem 1.25rem 1.5rem 1.25rem',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '0.5rem',
+              boxShadow: '0 20px 40px rgba(0,0,0,0.18)',
+              animation: 'fadeIn 0.2s ease-out',
+              maxHeight: 'calc(100vh - 80px)',
+              overflowY: 'auto',
+              zIndex: 95
+            }}
+          >
+            {navLinks.map((link) => {
+              const isActive = activeSection === link.href.replace('#', '');
+              return (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  onClick={handleLinkClick}
+                  style={{
+                    fontSize: '1.05rem',
+                    fontWeight: isActive ? 700 : 600,
+                    color: isActive ? 'var(--accent-primary)' : 'var(--text-primary)',
+                    padding: '0.85rem 0.75rem',
+                    borderRadius: '0.5rem',
+                    background: isActive ? 'var(--badge-bg)' : 'transparent',
+                    borderBottom: '1px solid var(--border-subtle)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    minHeight: '48px'
+                  }}
+                >
+                  <span>{link.label}</span>
+                  {isActive && (
+                    <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: 'var(--accent-primary)' }} />
+                  )}
+                </a>
+              );
+            })}
 
-            <a
-              href="#contact"
-              onClick={handleLinkClick}
-              className="btn-primary"
-              style={{ flex: 1, padding: '0.75rem' }}
-            >
-              <Send size={16} /> Contact
-            </a>
-          </div>
-        </div>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem', marginTop: '0.85rem' }}>
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  onOpenResume();
+                }}
+                className="btn-secondary"
+                style={{ width: '100%', padding: '0.75rem 0.5rem', fontSize: '0.875rem' }}
+              >
+                <FileText size={16} /> Resume
+              </button>
+
+              <a
+                href="#contact"
+                onClick={handleLinkClick}
+                className="btn-primary"
+                style={{ width: '100%', padding: '0.75rem 0.5rem', fontSize: '0.875rem' }}
+              >
+                <Send size={16} /> Contact
+              </a>
+            </div>
+          </nav>
+        </>
       )}
 
       {/* Style hook for responsive navbar visibility */}

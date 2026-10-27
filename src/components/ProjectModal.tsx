@@ -62,15 +62,15 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
 
   return (
     <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-content" onClick={(e) => e.stopPropagation()} style={{ padding: '2rem' }}>
+      <div className="modal-content project-modal-content" onClick={(e) => e.stopPropagation()} style={{ padding: '2rem' }}>
         
         {/* Modal Header */}
-        <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: '1.5rem', borderBottom: '1px solid var(--border-subtle)', paddingBottom: '1rem' }}>
-          <div>
+        <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', gap: '0.75rem', marginBottom: '1.5rem', borderBottom: '1px solid var(--border-subtle)', paddingBottom: '1rem' }}>
+          <div style={{ minWidth: '0' }}>
             <span className="section-tag" style={{ marginBottom: '0.5rem' }}>
               {project.category}
             </span>
-            <h3 style={{ fontSize: '1.65rem', color: 'var(--text-primary)', margin: 0 }}>
+            <h3 style={{ fontSize: 'clamp(1.3rem, 4.5vw, 1.65rem)', color: 'var(--text-primary)', margin: 0, wordBreak: 'break-word' }}>
               {project.title}
             </h3>
           </div>
@@ -78,12 +78,20 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
             onClick={onClose}
             aria-label="Close modal"
             style={{
+              width: '42px',
+              height: '42px',
+              minWidth: '42px',
+              minHeight: '42px',
               padding: '0.5rem',
               borderRadius: '0.5rem',
               background: 'var(--bg-card-subtle)',
               border: '1px solid var(--border-subtle)',
               color: 'var(--text-primary)',
-              cursor: 'pointer'
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              flexShrink: 0
             }}
           >
             <X size={20} />
@@ -335,13 +343,28 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
         </div>
 
         {/* Modal Action Footer */}
-        <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '0.75rem' }}>
-          <button onClick={onClose} className="btn-secondary" style={{ padding: '0.65rem 1.25rem' }}>
-            Close Case Study
+        <div className="modal-footer" style={{ display: 'flex', justifyContent: 'flex-end', gap: '0.75rem' }}>
+          <button onClick={onClose} className="btn-secondary modal-back-btn" style={{ padding: '0.65rem 1.25rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', fontWeight: 600 }}>
+            <span>← Back to Portfolio</span>
           </button>
         </div>
 
       </div>
+
+      <style>{`
+        @media (max-width: 640px) {
+          .project-modal-content {
+            padding: 1.25rem 1rem !important;
+            border-radius: 1rem !important;
+          }
+          .modal-footer {
+            width: 100% !important;
+          }
+          .modal-back-btn {
+            width: 100% !important;
+          }
+        }
+      `}</style>
     </div>
   );
 };

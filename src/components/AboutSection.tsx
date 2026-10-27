@@ -56,7 +56,7 @@ export const AboutSection: React.FC = () => {
         >
           {/* Left: Detailed Story */}
           <div 
-            className="glass-card"
+            className="glass-card about-card"
             style={{
               padding: '2.5rem',
               display: 'flex',
@@ -82,7 +82,7 @@ export const AboutSection: React.FC = () => {
 
               <h3 
                 style={{
-                  fontSize: '1.65rem',
+                  fontSize: 'clamp(1.35rem, 4vw, 1.65rem)',
                   marginBottom: '1.25rem',
                   color: 'var(--text-primary)',
                   lineHeight: 1.35
@@ -94,7 +94,7 @@ export const AboutSection: React.FC = () => {
               <p 
                 style={{
                   color: 'var(--text-secondary)',
-                  fontSize: '1.025rem',
+                  fontSize: 'clamp(0.925rem, 2.5vw, 1.025rem)',
                   lineHeight: 1.75,
                   marginBottom: '1.25rem'
                 }}
@@ -105,7 +105,7 @@ export const AboutSection: React.FC = () => {
               <p 
                 style={{
                   color: 'var(--text-secondary)',
-                  fontSize: '1.025rem',
+                  fontSize: 'clamp(0.925rem, 2.5vw, 1.025rem)',
                   lineHeight: 1.75,
                   marginBottom: '1.5rem'
                 }}
@@ -116,9 +116,10 @@ export const AboutSection: React.FC = () => {
 
             {/* Checklist highlights */}
             <div 
+              className="about-checklist"
               style={{
                 display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))',
                 gap: '0.85rem',
                 paddingTop: '1.25rem',
                 borderTop: '1px solid var(--border-subtle)'
@@ -148,14 +149,14 @@ export const AboutSection: React.FC = () => {
           >
             {/* Academic Credential Card */}
             <div 
-              className="glass-card"
+              className="glass-card about-card"
               style={{
                 padding: '2rem',
                 borderLeft: '4px solid var(--accent-primary)',
                 background: 'var(--bg-card)'
               }}
             >
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
+              <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem' }}>
                 <span className="section-tag" style={{ margin: 0 }}>
                   <GraduationCap size={14} /> CURRENT EDUCATION
                 </span>
@@ -257,16 +258,17 @@ export const AboutSection: React.FC = () => {
           </div>
 
           <div 
+            className="areas-interest-grid"
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
-              gap: '1.5rem'
+              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 250px), 1fr))',
+              gap: '1.25rem'
             }}
           >
             {AREAS_OF_INTEREST.map((area, index) => (
               <div 
                 key={index}
-                className="glass-card"
+                className="glass-card interest-card"
                 style={{
                   padding: '1.75rem',
                   display: 'flex',
@@ -285,7 +287,8 @@ export const AboutSection: React.FC = () => {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    border: '1px solid var(--badge-border)'
+                    border: '1px solid var(--badge-border)',
+                    flexShrink: 0
                   }}
                 >
                   {getIcon(area.icon)}
@@ -310,6 +313,16 @@ export const AboutSection: React.FC = () => {
         @media (min-width: 900px) {
           .about-split-grid {
             grid-template-columns: 1.25fr 1fr !important;
+          }
+        }
+        @media (max-width: 640px) {
+          .about-card {
+            padding: 1.5rem 1.15rem !important;
+            border-radius: 1rem !important;
+          }
+          .interest-card {
+            padding: 1.25rem 1rem !important;
+            border-radius: 1rem !important;
           }
         }
       `}</style>

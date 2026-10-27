@@ -40,43 +40,58 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenDemo }) 
           </p>
 
           {/* Quick Filter Tabs */}
-          <div style={{ display: 'inline-flex', gap: '0.5rem', background: 'var(--bg-card)', padding: '0.35rem', borderRadius: '0.75rem', border: '1px solid var(--border-subtle)', boxShadow: '0 4px 15px rgba(0,0,0,0.04)' }}>
+          <div 
+            style={{ 
+              display: 'flex', 
+              flexWrap: 'wrap', 
+              justifyContent: 'center',
+              gap: '0.5rem', 
+              background: 'var(--bg-card)', 
+              padding: '0.35rem', 
+              borderRadius: '0.75rem', 
+              border: '1px solid var(--border-subtle)', 
+              boxShadow: '0 4px 15px rgba(0,0,0,0.04)',
+              maxWidth: '100%',
+              margin: '0 auto'
+            }}
+          >
             <button
               onClick={() => setProjectFilter('all')}
               className={projectFilter === 'all' ? 'btn-primary' : 'btn-secondary'}
-              style={{ padding: '0.45rem 1.15rem', fontSize: '0.85rem', borderRadius: '0.5rem' }}
+              style={{ padding: '0.5rem 1.15rem', fontSize: '0.85rem', borderRadius: '0.5rem', flex: '1 1 auto' }}
             >
               All Projects ({PROJECTS.length})
             </button>
             <button
               onClick={() => setProjectFilter('automation')}
               className={projectFilter === 'automation' ? 'btn-primary' : 'btn-secondary'}
-              style={{ padding: '0.45rem 1.15rem', fontSize: '0.85rem', borderRadius: '0.5rem' }}
+              style={{ padding: '0.5rem 1.15rem', fontSize: '0.85rem', borderRadius: '0.5rem', flex: '1 1 auto' }}
             >
               Python & Automation
             </button>
             <button
               onClick={() => setProjectFilter('blockchain')}
               className={projectFilter === 'blockchain' ? 'btn-primary' : 'btn-secondary'}
-              style={{ padding: '0.45rem 1.15rem', fontSize: '0.85rem', borderRadius: '0.5rem' }}
+              style={{ padding: '0.5rem 1.15rem', fontSize: '0.85rem', borderRadius: '0.5rem', flex: '1 1 auto' }}
             >
               Blockchain & Web3
             </button>
           </div>
         </div>
 
-        {/* Projects Grid */}
+        {/* Projects Grid - 1 Column on Mobile, Responsive Grid on Desktop */}
         <div 
+          className="projects-grid"
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(360px, 1fr))',
-            gap: '2.5rem'
+            gridTemplateColumns: '1fr',
+            gap: '2rem'
           }}
         >
           {filteredProjects.map((project, index) => (
             <div 
               key={project.id}
-              className="glass-card"
+              className="glass-card project-card"
               style={{
                 display: 'flex',
                 flexDirection: 'column',
@@ -237,6 +252,21 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenDemo }) 
         project={selectedProject} 
         onClose={() => setSelectedProject(null)} 
       />
+
+      <style>{`
+        @media (min-width: 840px) {
+          .projects-grid {
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)) !important;
+            gap: 2.5rem !important;
+          }
+        }
+        @media (max-width: 640px) {
+          .project-card {
+            padding: 1.5rem 1.15rem !important;
+            border-radius: 1rem !important;
+          }
+        }
+      `}</style>
     </section>
   );
 };

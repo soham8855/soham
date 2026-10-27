@@ -113,6 +113,7 @@ export const SwaraajyaDemoView: React.FC<SwaraajyaDemoViewProps> = ({ onBack }) 
       
       {/* ================= TOP NAVIGATION BAR ================= */}
       <header
+        className="demo-header"
         style={{
           position: 'sticky',
           top: 0,
@@ -121,16 +122,16 @@ export const SwaraajyaDemoView: React.FC<SwaraajyaDemoViewProps> = ({ onBack }) 
           backdropFilter: 'blur(16px)',
           WebkitBackdropFilter: 'blur(16px)',
           borderBottom: '1px solid var(--border-light)',
-          padding: '0.85rem 1.5rem',
+          padding: '0.85rem 1.25rem',
           display: 'flex',
           flexWrap: 'wrap',
           alignItems: 'center',
           justifyContent: 'space-between',
-          gap: '1rem',
+          gap: '0.85rem',
           boxShadow: 'var(--card-shadow)'
         }}
       >
-        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', flexWrap: 'wrap' }}>
           {/* Back to Portfolio Button */}
           <button
             onClick={onBack}
@@ -141,7 +142,8 @@ export const SwaraajyaDemoView: React.FC<SwaraajyaDemoViewProps> = ({ onBack }) 
               display: 'inline-flex',
               alignItems: 'center',
               gap: '0.5rem',
-              fontWeight: 700
+              fontWeight: 700,
+              minHeight: '40px'
             }}
           >
             <ArrowLeft size={16} />
@@ -149,13 +151,13 @@ export const SwaraajyaDemoView: React.FC<SwaraajyaDemoViewProps> = ({ onBack }) 
           </button>
 
           <div style={{ display: 'flex', flexDirection: 'column' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <span style={{ fontWeight: 800, fontSize: '1.15rem', fontFamily: 'Space Grotesk, sans-serif', color: 'var(--text-primary)' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
+              <span style={{ fontWeight: 800, fontSize: 'clamp(1rem, 3.5vw, 1.15rem)', fontFamily: 'Space Grotesk, sans-serif', color: 'var(--text-primary)' }}>
                 Swaraajya E-Voting System
               </span>
               <span
                 style={{
-                  fontSize: '0.7rem',
+                  fontSize: '0.65rem',
                   fontWeight: 700,
                   padding: '0.15rem 0.5rem',
                   borderRadius: '9999px',
@@ -167,39 +169,39 @@ export const SwaraajyaDemoView: React.FC<SwaraajyaDemoViewProps> = ({ onBack }) 
                 LIVE PROJECT DEMO
               </span>
             </div>
-            <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
-              Source: C:\Users\SOHAM\Downloads\Swaraajya-Voting-main
+            <span style={{ fontSize: '0.725rem', color: 'var(--text-muted)', wordBreak: 'break-all' }}>
+              Source: Swaraajya-Voting-main
             </span>
           </div>
         </div>
 
         {/* View Switcher Tabs */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
+        <div className="demo-nav-tabs" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexWrap: 'wrap' }}>
           <button
             onClick={() => setActiveTab('live-app')}
             className={activeTab === 'live-app' ? 'btn-primary' : 'btn-secondary'}
-            style={{ padding: '0.45rem 0.95rem', fontSize: '0.825rem' }}
+            style={{ padding: '0.45rem 0.85rem', fontSize: '0.8rem', flex: '1 1 auto' }}
           >
             <Globe size={14} />
-            <span>Live Standalone App (Port 5174)</span>
+            <span>Standalone App (5174)</span>
           </button>
 
           <button
             onClick={() => setActiveTab('interactive-portal')}
             className={activeTab === 'interactive-portal' ? 'btn-primary' : 'btn-secondary'}
-            style={{ padding: '0.45rem 0.95rem', fontSize: '0.825rem' }}
+            style={{ padding: '0.45rem 0.85rem', fontSize: '0.8rem', flex: '1 1 auto' }}
           >
             <Vote size={14} />
-            <span>Interactive Portal & Web3</span>
+            <span>Portal & Web3</span>
           </button>
 
           <button
             onClick={() => setActiveTab('blockchain-requirements')}
             className={activeTab === 'blockchain-requirements' ? 'btn-primary' : 'btn-secondary'}
-            style={{ padding: '0.45rem 0.95rem', fontSize: '0.825rem' }}
+            style={{ padding: '0.45rem 0.85rem', fontSize: '0.8rem', flex: '1 1 auto' }}
           >
             <Cpu size={14} />
-            <span>Network & Requirements</span>
+            <span>Requirements</span>
           </button>
 
           <a
@@ -207,10 +209,10 @@ export const SwaraajyaDemoView: React.FC<SwaraajyaDemoViewProps> = ({ onBack }) 
             target="_blank"
             rel="noopener noreferrer"
             className="btn-secondary"
-            style={{ padding: '0.45rem 0.85rem', fontSize: '0.825rem' }}
+            style={{ padding: '0.45rem 0.75rem', fontSize: '0.8rem', display: 'flex', alignItems: 'center', gap: '0.35rem' }}
             title="Open standalone Swaraajya in a separate browser tab"
           >
-            <span>Open in Tab</span>
+            <span>Open</span>
             <ExternalLink size={14} />
           </a>
         </div>
@@ -349,39 +351,39 @@ export const SwaraajyaDemoView: React.FC<SwaraajyaDemoViewProps> = ({ onBack }) 
           </div>
 
           {/* Sub Navigation */}
-          <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '2rem' }}>
+          <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1.75rem', flexWrap: 'wrap' }}>
             <button
               onClick={() => setPortalMode('cast-vote')}
               className={portalMode === 'cast-vote' ? 'btn-primary' : 'btn-secondary'}
-              style={{ padding: '0.5rem 1.25rem', fontSize: '0.875rem' }}
+              style={{ padding: '0.5rem 1.15rem', fontSize: '0.85rem', flex: '1 1 auto' }}
             >
               <Vote size={15} />
-              <span>Voter Portal & Cast Ballot</span>
+              <span>Voter Portal</span>
             </button>
             <button
               onClick={() => setPortalMode('results')}
               className={portalMode === 'results' ? 'btn-primary' : 'btn-secondary'}
-              style={{ padding: '0.5rem 1.25rem', fontSize: '0.875rem' }}
+              style={{ padding: '0.5rem 1.15rem', fontSize: '0.85rem', flex: '1 1 auto' }}
             >
               <BarChart3 size={15} />
-              <span>Real-Time Election Results ({totalVotes} Votes)</span>
+              <span>Results ({totalVotes})</span>
             </button>
             <button
               onClick={() => setPortalMode('admin')}
               className={portalMode === 'admin' ? 'btn-primary' : 'btn-secondary'}
-              style={{ padding: '0.5rem 1.25rem', fontSize: '0.875rem' }}
+              style={{ padding: '0.5rem 1.15rem', fontSize: '0.85rem', flex: '1 1 auto' }}
             >
               <Users size={15} />
-              <span>Admin Management Dashboard</span>
+              <span>Admin Dashboard</span>
             </button>
           </div>
 
           {/* Sub View: Cast Ballot */}
           {portalMode === 'cast-vote' && (
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))', gap: '1.5rem' }}>
               
               {/* Left: Voter Identity & Verification */}
-              <div className="glass-card" style={{ padding: '2rem' }}>
+              <div className="glass-card demo-card" style={{ padding: '2rem' }}>
                 <h3 style={{ fontSize: '1.25rem', marginBottom: '0.5rem', color: 'var(--text-primary)' }}>
                   Aadhaar Cryptographic Verification
                 </h3>
@@ -440,7 +442,7 @@ export const SwaraajyaDemoView: React.FC<SwaraajyaDemoViewProps> = ({ onBack }) 
               </div>
 
               {/* Right: Ballot Candidates */}
-              <div className="glass-card" style={{ padding: '2rem' }}>
+              <div className="glass-card demo-card" style={{ padding: '2rem' }}>
                 <h3 style={{ fontSize: '1.25rem', marginBottom: '0.5rem', color: 'var(--text-primary)' }}>
                   Select Candidate for Constituency Ballot
                 </h3>
@@ -717,11 +719,11 @@ export const SwaraajyaDemoView: React.FC<SwaraajyaDemoViewProps> = ({ onBack }) 
 
             </div>
 
-            <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '1rem' }}>
-              <button onClick={onBack} className="btn-secondary" style={{ padding: '0.65rem 1.25rem' }}>
+            <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '0.75rem', flexWrap: 'wrap' }}>
+              <button onClick={onBack} className="btn-secondary" style={{ padding: '0.65rem 1.25rem', flex: '1 1 auto' }}>
                 <ArrowLeft size={16} /> Return to Portfolio
               </button>
-              <button onClick={() => setActiveTab('live-app')} className="btn-primary" style={{ padding: '0.65rem 1.25rem' }}>
+              <button onClick={() => setActiveTab('live-app')} className="btn-primary" style={{ padding: '0.65rem 1.25rem', flex: '1 1 auto' }}>
                 <Globe size={16} /> View Live Embedded App
               </button>
             </div>
@@ -730,6 +732,20 @@ export const SwaraajyaDemoView: React.FC<SwaraajyaDemoViewProps> = ({ onBack }) 
         </div>
       )}
 
+      <style>{`
+        @media (max-width: 640px) {
+          .demo-header {
+            padding: 0.75rem 0.85rem !important;
+          }
+          .demo-nav-tabs {
+            width: 100% !important;
+          }
+          .demo-card {
+            padding: 1.25rem 1rem !important;
+            border-radius: 1rem !important;
+          }
+        }
+      `}</style>
     </div>
   );
 };

@@ -14,23 +14,25 @@ export const Footer: React.FC = () => {
 
   return (
     <footer 
+      className="site-footer"
       style={{
         position: 'relative',
         zIndex: 10,
         background: 'var(--bg-primary)',
         borderTop: '1px solid var(--border-light)',
-        padding: '4.5rem 0 2rem 0'
+        padding: '3.5rem 0 2rem 0'
       }}
     >
       <div className="container">
         
         {/* Main Footer Row */}
         <div 
+          className="footer-grid"
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-            gap: '3rem',
-            marginBottom: '3.5rem'
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 220px), 1fr))',
+            gap: '2.5rem',
+            marginBottom: '3rem'
           }}
         >
           
@@ -166,6 +168,18 @@ export const Footer: React.FC = () => {
         </div>
 
       </div>
+
+      <style>{`
+        @media (max-width: 640px) {
+          .site-footer {
+            padding: 2.5rem 0 1.5rem 0 !important;
+          }
+          .footer-grid {
+            gap: 1.75rem !important;
+            margin-bottom: 2rem !important;
+          }
+        }
+      `}</style>
     </footer>
   );
 };

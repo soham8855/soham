@@ -26,6 +26,7 @@ export const EducationSection: React.FC = () => {
 
         {/* Education Timeline */}
         <div 
+          className="education-timeline"
           style={{
             maxWidth: '900px',
             margin: '0 auto',
@@ -37,6 +38,7 @@ export const EducationSection: React.FC = () => {
         >
           {/* Timeline center line for desktop */}
           <div 
+            className="timeline-line"
             style={{
               position: 'absolute',
               top: '20px',
@@ -51,6 +53,7 @@ export const EducationSection: React.FC = () => {
           {EDUCATION_HISTORY.map((item, index) => (
             <div 
               key={index}
+              className="timeline-item"
               style={{
                 display: 'flex',
                 gap: '1.75rem',
@@ -60,6 +63,7 @@ export const EducationSection: React.FC = () => {
             >
               {/* Timeline Node */}
               <div 
+                className="timeline-node"
                 style={{
                   width: '56px',
                   height: '56px',
@@ -76,12 +80,12 @@ export const EducationSection: React.FC = () => {
                   flexShrink: 0
                 }}
               >
-                <GraduationCap size={24} />
+                <GraduationCap className="timeline-icon" size={24} />
               </div>
 
               {/* Card Content */}
               <div 
-                className="glass-card"
+                className="glass-card edu-card"
                 style={{
                   flex: 1,
                   padding: '2rem',
@@ -180,6 +184,33 @@ export const EducationSection: React.FC = () => {
         </div>
 
       </div>
+
+      <style>{`
+        @media (max-width: 640px) {
+          .education-timeline {
+            gap: 1.5rem !important;
+          }
+          .timeline-item {
+            gap: 0.85rem !important;
+          }
+          .timeline-node {
+            width: 40px !important;
+            height: 40px !important;
+            border-radius: 12px !important;
+          }
+          .timeline-node svg {
+            width: 18px !important;
+            height: 18px !important;
+          }
+          .timeline-line {
+            left: 19px !important;
+          }
+          .edu-card {
+            padding: 1.25rem 1rem !important;
+            border-radius: 1rem !important;
+          }
+        }
+      `}</style>
     </section>
   );
 };

@@ -190,7 +190,7 @@ export const CertificationsSection: React.FC = () => {
 
           {/* Hackathon & Collaborative Highlights banner */}
           <div 
-            className="glass-card"
+            className="glass-card cert-banner"
             style={{
               padding: '1.75rem 2rem',
               display: 'flex',
@@ -248,6 +248,16 @@ export const CertificationsSection: React.FC = () => {
         @media (min-width: 768px) {
           .cert-card-grid {
             grid-template-columns: 1.6fr 1fr !important;
+          }
+        }
+        @media (max-width: 640px) {
+          .cert-card-grid {
+            padding: 1.5rem 1.15rem !important;
+            border-radius: 1rem !important;
+          }
+          .cert-banner {
+            padding: 1.25rem 1rem !important;
+            border-radius: 1rem !important;
           }
         }
       `}</style>

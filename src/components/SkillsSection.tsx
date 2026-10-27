@@ -65,6 +65,7 @@ export const SkillsSection: React.FC = () => {
 
         {/* Filters and Search Bar */}
         <div 
+          className="skills-filter-container"
           style={{
             display: 'flex',
             flexWrap: 'wrap',
@@ -79,8 +80,9 @@ export const SkillsSection: React.FC = () => {
             style={{
               display: 'flex',
               flexWrap: 'wrap',
-              gap: '0.5rem',
-              alignItems: 'center'
+              gap: '0.45rem',
+              alignItems: 'center',
+              width: '100%'
             }}
           >
             <button
@@ -105,15 +107,15 @@ export const SkillsSection: React.FC = () => {
 
           {/* Real-time Search Input */}
           <div 
-            className="glass-card"
+            className="glass-card skills-search-box"
             style={{
               display: 'flex',
               alignItems: 'center',
               gap: '0.65rem',
-              padding: '0.5rem 1rem',
+              padding: '0.6rem 1rem',
               borderRadius: '0.75rem',
               width: '100%',
-              maxWidth: '300px'
+              maxWidth: '320px'
             }}
           >
             <Search size={16} color="var(--text-muted)" />
@@ -134,7 +136,7 @@ export const SkillsSection: React.FC = () => {
             {searchQuery && (
               <button 
                 onClick={() => setSearchQuery('')}
-                style={{ fontSize: '0.8rem', color: 'var(--text-muted)', cursor: 'pointer' }}
+                style={{ fontSize: '0.8rem', color: 'var(--text-muted)', cursor: 'pointer', padding: '0.25rem 0.5rem' }}
               >
                 Clear
               </button>
@@ -144,17 +146,18 @@ export const SkillsSection: React.FC = () => {
 
         {/* Skills Cards Grid */}
         <div 
+          className="skills-grid"
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))',
-            gap: '1.75rem'
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))',
+            gap: '1.5rem'
           }}
         >
           {filteredCategories.length > 0 ? (
             filteredCategories.map((category) => (
               <div 
                 key={category!.title}
-                className="glass-card"
+                className="glass-card skill-cat-card"
                 style={{
                   padding: '2rem',
                   display: 'flex',
@@ -255,7 +258,7 @@ export const SkillsSection: React.FC = () => {
 
         {/* Stack Highlight Footer */}
         <div 
-          className="glass-card"
+          className="glass-card skills-stack-footer"
           style={{
             marginTop: '3rem',
             padding: '1.5rem 2rem',
@@ -263,7 +266,7 @@ export const SkillsSection: React.FC = () => {
             flexWrap: 'wrap',
             alignItems: 'center',
             justifyContent: 'space-between',
-            gap: '1.5rem'
+            gap: '1.25rem'
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
@@ -294,6 +297,22 @@ export const SkillsSection: React.FC = () => {
         </div>
 
       </div>
+
+      <style>{`
+        @media (max-width: 640px) {
+          .skill-cat-card {
+            padding: 1.25rem 1rem !important;
+            border-radius: 1rem !important;
+          }
+          .skills-search-box {
+            max-width: 100% !important;
+          }
+          .skills-stack-footer {
+            padding: 1.25rem 1rem !important;
+            border-radius: 1rem !important;
+          }
+        }
+      `}</style>
     </section>
   );
 };

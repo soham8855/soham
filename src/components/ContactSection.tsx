@@ -86,20 +86,22 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onShowToast }) =
             
             {/* Email Card */}
             <div 
-              className="glass-card"
+              className="glass-card contact-card"
               style={{
                 padding: '1.75rem',
                 display: 'flex',
+                flexWrap: 'wrap',
                 alignItems: 'center',
                 justifyContent: 'space-between',
+                gap: '1rem',
                 borderLeft: '4px solid var(--accent-primary)'
               }}
             >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', minWidth: '0', flex: '1 1 200px' }}>
                 <div 
                   style={{
-                    width: '48px',
-                    height: '48px',
+                    width: '44px',
+                    height: '44px',
                     borderRadius: '12px',
                     background: 'var(--badge-bg)',
                     color: 'var(--accent-primary)',
@@ -109,19 +111,20 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onShowToast }) =
                     flexShrink: 0
                   }}
                 >
-                  <Mail size={22} />
+                  <Mail size={20} />
                 </div>
-                <div>
-                  <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+                <div style={{ minWidth: '0' }}>
+                  <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
                     DIRECT EMAIL
                   </div>
                   <a 
                     href={`mailto:${PERSONAL_INFO.email}`}
                     style={{
-                      fontSize: '1rem',
+                      fontSize: 'clamp(0.875rem, 3.5vw, 1rem)',
                       fontWeight: 700,
                       color: 'var(--text-primary)',
-                      textDecoration: 'none'
+                      textDecoration: 'none',
+                      wordBreak: 'break-all'
                     }}
                   >
                     {PERSONAL_INFO.email}
@@ -129,17 +132,22 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onShowToast }) =
                 </div>
               </div>
 
-              <div style={{ display: 'flex', gap: '0.5rem' }}>
+              <div style={{ display: 'flex', gap: '0.5rem', flexShrink: 0 }}>
                 <button
                   onClick={() => handleCopy(PERSONAL_INFO.email, 'Email')}
                   aria-label="Copy Email"
                   style={{
+                    minWidth: '40px',
+                    minHeight: '40px',
                     padding: '0.6rem',
                     borderRadius: '0.5rem',
                     background: 'var(--bg-card-subtle)',
                     border: '1px solid var(--border-subtle)',
                     color: copiedField === 'Email' ? '#10b981' : 'var(--text-primary)',
-                    cursor: 'pointer'
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
                   }}
                   title="Copy email to clipboard"
                 >
@@ -148,7 +156,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onShowToast }) =
                 <a
                   href={`mailto:${PERSONAL_INFO.email}`}
                   className="btn-primary"
-                  style={{ padding: '0.6rem 0.85rem', fontSize: '0.8rem' }}
+                  style={{ minWidth: '40px', minHeight: '40px', padding: '0.6rem 0.85rem', fontSize: '0.8rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                 >
                   <ExternalLink size={14} />
                 </a>
@@ -157,20 +165,22 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onShowToast }) =
 
             {/* Phone Card */}
             <div 
-              className="glass-card"
+              className="glass-card contact-card"
               style={{
                 padding: '1.75rem',
                 display: 'flex',
+                flexWrap: 'wrap',
                 alignItems: 'center',
                 justifyContent: 'space-between',
+                gap: '1rem',
                 borderLeft: '4px solid #10b981'
               }}
             >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', minWidth: '0', flex: '1 1 200px' }}>
                 <div 
                   style={{
-                    width: '48px',
-                    height: '48px',
+                    width: '44px',
+                    height: '44px',
                     borderRadius: '12px',
                     background: 'rgba(16, 185, 129, 0.12)',
                     color: '#059669',
@@ -180,19 +190,20 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onShowToast }) =
                     flexShrink: 0
                   }}
                 >
-                  <Phone size={22} />
+                  <Phone size={20} />
                 </div>
-                <div>
-                  <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
+                <div style={{ minWidth: '0' }}>
+                  <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.06em' }}>
                     PHONE NUMBER
                   </div>
                   <a 
                     href={`tel:${PERSONAL_INFO.phoneRaw}`}
                     style={{
-                      fontSize: '1.05rem',
+                      fontSize: 'clamp(0.95rem, 3.5vw, 1.05rem)',
                       fontWeight: 700,
                       color: 'var(--text-primary)',
-                      textDecoration: 'none'
+                      textDecoration: 'none',
+                      wordBreak: 'break-word'
                     }}
                   >
                     {PERSONAL_INFO.phone}
@@ -200,17 +211,22 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onShowToast }) =
                 </div>
               </div>
 
-              <div style={{ display: 'flex', gap: '0.5rem' }}>
+              <div style={{ display: 'flex', gap: '0.5rem', flexShrink: 0 }}>
                 <button
                   onClick={() => handleCopy(PERSONAL_INFO.phone, 'Phone number')}
                   aria-label="Copy Phone"
                   style={{
+                    minWidth: '40px',
+                    minHeight: '40px',
                     padding: '0.6rem',
                     borderRadius: '0.5rem',
                     background: 'var(--bg-card-subtle)',
                     border: '1px solid var(--border-subtle)',
                     color: copiedField === 'Phone number' ? '#10b981' : 'var(--text-primary)',
-                    cursor: 'pointer'
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
                   }}
                   title="Copy phone to clipboard"
                 >
@@ -219,7 +235,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onShowToast }) =
                 <a
                   href={`tel:${PERSONAL_INFO.phoneRaw}`}
                   className="btn-primary"
-                  style={{ padding: '0.6rem 0.85rem', fontSize: '0.8rem' }}
+                  style={{ minWidth: '40px', minHeight: '40px', padding: '0.6rem 0.85rem', fontSize: '0.8rem', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                 >
                   <ExternalLink size={14} />
                 </a>
@@ -228,7 +244,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onShowToast }) =
 
             {/* Academic & Geographic Location */}
             <div 
-              className="glass-card"
+              className="glass-card contact-card"
               style={{
                 padding: '1.75rem',
                 display: 'flex',
@@ -295,7 +311,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onShowToast }) =
 
           {/* ================= RIGHT: INTERACTIVE CONTACT FORM ================= */}
           <div 
-            className="glass-card"
+            className="glass-card contact-form-card"
             style={{
               padding: '2.5rem'
             }}
@@ -497,6 +513,16 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onShowToast }) =
         @media (min-width: 900px) {
           .contact-grid {
             grid-template-columns: 1fr 1.25fr !important;
+          }
+        }
+        @media (max-width: 640px) {
+          .contact-card {
+            padding: 1.25rem 1rem !important;
+            border-radius: 1rem !important;
+          }
+          .contact-form-card {
+            padding: 1.5rem 1.15rem !important;
+            border-radius: 1rem !important;
           }
         }
       `}</style>

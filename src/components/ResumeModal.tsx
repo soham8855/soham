@@ -85,7 +85,7 @@ Web Development & UI Design · RPA & Process Automation (UiPath) · Artificial I
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div 
-        className="modal-content print-resume-area" 
+        className="modal-content print-resume-area resume-modal-content" 
         onClick={(e) => e.stopPropagation()} 
         style={{ 
           maxWidth: '850px',
@@ -102,7 +102,7 @@ Web Development & UI Design · RPA & Process Automation (UiPath) · Artificial I
             display: 'flex', 
             justifyContent: 'space-between', 
             alignItems: 'center', 
-            marginBottom: '2rem', 
+            marginBottom: '1.5rem', 
             borderBottom: '1px solid var(--border-subtle)', 
             paddingBottom: '1rem',
             flexWrap: 'wrap',
@@ -111,30 +111,30 @@ Web Development & UI Design · RPA & Process Automation (UiPath) · Artificial I
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
             <FileText size={20} color="var(--accent-primary)" />
-            <span style={{ fontWeight: 700, fontSize: '1rem' }}>Resume Curriculum Vitae</span>
+            <span style={{ fontWeight: 700, fontSize: '0.95rem' }}>Resume Curriculum Vitae</span>
           </div>
 
-          <div style={{ display: 'flex', gap: '0.65rem', flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', alignItems: 'center' }}>
             <button 
               onClick={handlePrint}
               className="btn-primary"
-              style={{ padding: '0.5rem 0.95rem', fontSize: '0.85rem' }}
+              style={{ padding: '0.45rem 0.85rem', fontSize: '0.8rem' }}
             >
-              <Printer size={15} />
+              <Printer size={14} />
               <span>Print / PDF</span>
             </button>
             <button 
               onClick={handleDownloadTextCV}
               className="btn-secondary"
-              style={{ padding: '0.5rem 0.95rem', fontSize: '0.85rem' }}
+              style={{ padding: '0.45rem 0.85rem', fontSize: '0.8rem' }}
             >
-              <Download size={15} />
+              <Download size={14} />
               <span>Download (.txt)</span>
             </button>
             <button 
               onClick={handleCopySummary}
               className="btn-secondary"
-              style={{ padding: '0.5rem 0.85rem', fontSize: '0.85rem' }}
+              style={{ padding: '0.45rem 0.75rem', fontSize: '0.8rem' }}
             >
               <span>Copy</span>
             </button>
@@ -142,12 +142,17 @@ Web Development & UI Design · RPA & Process Automation (UiPath) · Artificial I
               onClick={onClose}
               aria-label="Close resume"
               style={{
-                padding: '0.5rem',
+                width: '38px',
+                height: '38px',
+                padding: '0.4rem',
                 borderRadius: '0.5rem',
                 background: 'var(--bg-card-subtle)',
                 border: '1px solid var(--border-subtle)',
                 color: 'var(--text-primary)',
-                cursor: 'pointer'
+                cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
               }}
             >
               <X size={18} />
@@ -156,13 +161,13 @@ Web Development & UI Design · RPA & Process Automation (UiPath) · Artificial I
         </div>
 
         {/* ================= RESUME DOCUMENT CONTENT ================= */}
-        <div style={{ padding: '0 0.5rem' }}>
+        <div style={{ padding: '0 0.25rem' }}>
           
           {/* Header */}
           <div style={{ textAlign: 'center', borderBottom: '2px solid var(--accent-primary)', paddingBottom: '1.25rem', marginBottom: '1.75rem' }}>
             <h1 
               style={{ 
-                fontSize: '2.2rem', 
+                fontSize: 'clamp(1.5rem, 5vw, 2.2rem)', 
                 fontWeight: 800, 
                 letterSpacing: '0.04em',
                 marginBottom: '0.5rem',
@@ -284,7 +289,7 @@ Web Development & UI Design · RPA & Process Automation (UiPath) · Artificial I
           </div>
 
           {/* Section: Areas of Interest */}
-          <div>
+          <div style={{ marginBottom: '1.5rem' }}>
             <h2 style={{ fontSize: '1.05rem', textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--accent-primary)', borderBottom: '1px solid var(--border-subtle)', paddingBottom: '0.35rem', marginBottom: '0.75rem', fontWeight: 800 }}>
               Areas of Interest
             </h2>
@@ -293,9 +298,29 @@ Web Development & UI Design · RPA & Process Automation (UiPath) · Artificial I
             </p>
           </div>
 
+          {/* Bottom Back Button */}
+          <div className="no-print" style={{ display: 'flex', justifyContent: 'center', paddingTop: '1.25rem', borderTop: '1px solid var(--border-subtle)' }}>
+            <button
+              onClick={onClose}
+              className="btn-secondary"
+              style={{ padding: '0.65rem 2rem', fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.5rem' }}
+            >
+              <span>← Back to Portfolio</span>
+            </button>
+          </div>
+
         </div>
 
       </div>
+
+      <style>{`
+        @media (max-width: 640px) {
+          .resume-modal-content {
+            padding: 1.25rem 1rem !important;
+            border-radius: 1rem !important;
+          }
+        }
+      `}</style>
     </div>
   );
 };
