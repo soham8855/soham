@@ -97,6 +97,7 @@ html, body {
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 85px;
   font-size: 16px;
   -webkit-text-size-adjust: 100%;
 }
@@ -142,7 +143,7 @@ button {
 }
 
 /* ==========================================================================
-   LAYOUT UTILITIES
+   LAYOUT UTILITIES & RESPONSIVE CONTAINER
    ========================================================================== */
 
 .container {
@@ -152,10 +153,34 @@ button {
   padding: 0 1.5rem;
 }
 
+@media (max-width: 640px) {
+  .container {
+    padding: 0 1.15rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .container {
+    padding: 0 0.85rem;
+  }
+}
+
 .section-wrapper {
   position: relative;
   padding: 5.5rem 0;
   z-index: 10;
+}
+
+@media (max-width: 900px) {
+  .section-wrapper {
+    padding: 4rem 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .section-wrapper {
+    padding: 3rem 0;
+  }
 }
 
 /* Section Headers */
@@ -177,20 +202,34 @@ button {
   max-width: 100%;
 }
 
+@media (max-width: 480px) {
+  .section-tag {
+    font-size: 0.75rem;
+    padding: 0.35rem 0.8rem;
+  }
+}
+
 .section-title {
-  font-size: 2.85rem;
+  font-size: clamp(1.85rem, 5vw, 2.75rem);
   font-weight: 700;
   margin-bottom: 0.85rem;
   color: var(--text-primary);
   word-break: break-word;
+  line-height: 1.2;
 }
 
 .section-subtitle {
-  font-size: 1.05rem;
+  font-size: clamp(0.92rem, 2vw, 1.05rem);
   color: var(--text-secondary);
   max-width: 640px;
   margin: 0 auto 2.75rem auto;
   line-height: 1.65;
+}
+
+@media (max-width: 640px) {
+  .section-subtitle {
+    margin-bottom: 2rem;
+  }
 }
 
 .text-center {

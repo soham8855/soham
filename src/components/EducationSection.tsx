@@ -184,6 +184,33 @@ export const EducationSection: React.FC = () => {
         </div>
 
       </div>
+
+      <style>{`
+        @media (max-width: 640px) {
+          .education-timeline {
+            gap: 1.5rem !important;
+          }
+          .timeline-item {
+            gap: 0.85rem !important;
+          }
+          .timeline-node {
+            width: 40px !important;
+            height: 40px !important;
+            border-radius: 12px !important;
+          }
+          .timeline-node svg {
+            width: 18px !important;
+            height: 18px !important;
+          }
+          .timeline-line {
+            left: 19px !important;
+          }
+          .edu-card {
+            padding: 1.25rem 1rem !important;
+            border-radius: 1rem !important;
+          }
+        }
+      `}</style>
     </section>
   );
 };

@@ -19,12 +19,14 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenResume }) => {
   const [isHoveringScreen, setIsHoveringScreen] = useState(false);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    // Only apply 3D tilt on larger screens where mouse is active
+    if (window.innerWidth < 900) return;
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left - rect.width / 2;
     const y = e.clientY - rect.top - rect.height / 2;
     setTilt({
-      x: -(y / rect.height) * 12,
-      y: (x / rect.width) * 12
+      x: -(y / rect.height) * 10,
+      y: (x / rect.width) * 10
     });
   };
 
@@ -41,29 +43,30 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenResume }) => {
         display: 'flex',
         alignItems: 'center',
         paddingTop: '6.5rem',
-        paddingBottom: '4rem',
-        overflow: 'hidden'
+        paddingBottom: '3.5rem',
+        overflow: 'hidden',
+        width: '100%'
       }}
     >
-      {/* Ambient decorative blur orbs matching the silver/cyan aesthetic */}
+      {/* Ambient decorative blur orbs */}
       <div 
         className="glow-orb"
         style={{
-          width: '500px',
-          height: '500px',
-          top: '10%',
-          right: '5%',
-          background: 'radial-gradient(circle, rgba(14, 165, 233, 0.18) 0%, rgba(2, 132, 199, 0.05) 50%, transparent 75%)'
+          width: 'min(500px, 80vw)',
+          height: 'min(500px, 80vw)',
+          top: '5%',
+          right: '0%',
+          background: 'radial-gradient(circle, rgba(14, 165, 233, 0.16) 0%, rgba(2, 132, 199, 0.04) 50%, transparent 75%)'
         }}
       />
       <div 
         className="glow-orb"
         style={{
-          width: '400px',
-          height: '400px',
-          bottom: '10%',
+          width: 'min(400px, 70vw)',
+          height: 'min(400px, 70vw)',
+          bottom: '5%',
           left: '0%',
-          background: 'radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, rgba(14, 165, 233, 0.08) 50%, transparent 75%)'
+          background: 'radial-gradient(circle, rgba(255, 255, 255, 0.35) 0%, rgba(14, 165, 233, 0.06) 50%, transparent 75%)'
         }}
       />
 
@@ -79,7 +82,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenResume }) => {
         >
           
           {/* ================= LEFT COLUMN: HERO CONTENT ================= */}
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', width: '100%' }}>
             
             {/* Status / Specialization Badge */}
             <div 
@@ -104,21 +107,22 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenResume }) => {
               <span>Computer Science Engineer · IoT, Security & Blockchain</span>
             </div>
 
-            {/* Prominent Name Display - Exact Desktop Heading */}
-            <div style={{ position: 'relative', marginBottom: '0.35rem' }}>
+            {/* Prominent Name Display */}
+            <div style={{ position: 'relative', marginBottom: '0.35rem', maxWidth: '100%' }}>
               <h1 
                 style={{
-                  fontSize: 'clamp(3.5rem, 8vw, 6.5rem)',
+                  fontSize: 'clamp(2.75rem, 7.5vw, 5.5rem)',
                   fontFamily: 'Space Grotesk, sans-serif',
                   fontWeight: 900,
-                  lineHeight: 0.95,
+                  lineHeight: 1,
                   letterSpacing: '-0.035em',
                   background: 'var(--hero-name-gradient)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                   margin: 0,
                   textTransform: 'uppercase',
-                  display: 'inline-block'
+                  display: 'inline-block',
+                  wordBreak: 'break-word'
                 }}
               >
                 {PERSONAL_INFO.name}
@@ -128,20 +132,20 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenResume }) => {
             {/* Full Name & Designation */}
             <div 
               style={{
-                fontSize: '1.25rem',
+                fontSize: 'clamp(1.1rem, 3vw, 1.35rem)',
                 fontWeight: 700,
                 color: 'var(--text-secondary)',
-                letterSpacing: '0.04em',
+                letterSpacing: '0.03em',
                 marginBottom: '0.85rem'
               }}
             >
               {PERSONAL_INFO.fullName}
             </div>
 
-            {/* Professional Subtitle - Related to Software Development, AI & ML */}
+            {/* Professional Subtitle */}
             <div 
               style={{
-                fontSize: 'clamp(1.1rem, 2.4vw, 1.35rem)',
+                fontSize: 'clamp(0.95rem, 2.2vw, 1.25rem)',
                 fontWeight: 600,
                 color: 'var(--accent-primary)',
                 marginBottom: '1.25rem',
@@ -158,10 +162,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenResume }) => {
               <span>Blockchain Engineering</span>
             </div>
 
-            {/* Clean, Stylish Introduction from Resume */}
+            {/* Professional Summary from Resume */}
             <p 
               style={{
-                fontSize: '1.05rem',
+                fontSize: 'clamp(0.925rem, 2vw, 1.025rem)',
                 lineHeight: 1.7,
                 color: 'var(--text-secondary)',
                 maxWidth: '580px',
@@ -173,33 +177,36 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenResume }) => {
 
             {/* Call-to-Action Buttons */}
             <div 
+              className="hero-cta-group"
               style={{
                 display: 'flex',
                 flexWrap: 'wrap',
-                gap: '1rem',
-                marginBottom: '2.5rem'
+                gap: '0.85rem',
+                marginBottom: '2.5rem',
+                width: '100%'
               }}
             >
-              <a href="#projects" className="btn-primary">
+              <a href="#projects" className="btn-primary hero-btn">
                 <span>Explore Featured Projects</span>
                 <ArrowRight size={18} />
               </a>
 
-              <button onClick={onOpenResume} className="btn-secondary">
+              <button onClick={onOpenResume} className="btn-secondary hero-btn">
                 <Download size={18} />
                 <span>View Full Resume</span>
               </button>
 
-              <a href="#contact" className="btn-secondary">
+              <a href="#contact" className="btn-secondary hero-btn">
                 <span>Get In Touch</span>
               </a>
             </div>
 
             {/* Quick Metrics Bar from Resume */}
             <div 
+              className="hero-metrics-bar"
               style={{
                 display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(110px, 1fr))',
+                gridTemplateColumns: 'repeat(4, 1fr)',
                 gap: '1rem',
                 width: '100%',
                 maxWidth: '580px',
@@ -212,7 +219,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenResume }) => {
                   <span 
                     style={{
                       fontFamily: 'Space Grotesk, sans-serif',
-                      fontSize: '1.4rem',
+                      fontSize: 'clamp(1.2rem, 3vw, 1.4rem)',
                       fontWeight: 800,
                       color: 'var(--text-primary)'
                     }}
@@ -221,11 +228,12 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenResume }) => {
                   </span>
                   <span 
                     style={{
-                      fontSize: '0.775rem',
+                      fontSize: '0.725rem',
                       color: 'var(--text-muted)',
                       fontWeight: 500,
                       textTransform: 'uppercase',
-                      letterSpacing: '0.05em'
+                      letterSpacing: '0.05em',
+                      marginTop: '2px'
                     }}
                   >
                     {stat.label}
@@ -236,23 +244,24 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenResume }) => {
 
           </div>
 
-          {/* ================= RIGHT COLUMN: REFERENCE IMAGE CENTERPIECE ================= */}
+          {/* ================= RIGHT COLUMN: GLOBE & LAPTOP ARTWORK CENTERPIECE ================= */}
           <div 
             style={{
               position: 'relative',
               display: 'flex',
               justifyContent: 'center',
-              perspective: '1000px'
+              perspective: '1000px',
+              width: '100%'
             }}
           >
             {/* Interactive 3D Card showcasing the visual reference composition */}
             <div
               onMouseMove={handleMouseMove}
               onMouseLeave={handleMouseLeave}
-              className="glass-card"
+              className="glass-card hero-artwork-card"
               style={{
                 width: '100%',
-                maxWidth: '580px',
+                maxWidth: '560px',
                 borderRadius: '1.5rem',
                 padding: '0.85rem',
                 transform: `rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
@@ -302,15 +311,15 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenResume }) => {
                 <div
                   style={{
                     position: 'absolute',
-                    top: '1rem',
-                    left: '1rem',
-                    background: 'rgba(15, 23, 42, 0.75)',
+                    top: '0.85rem',
+                    left: '0.85rem',
+                    background: 'rgba(15, 23, 42, 0.78)',
                     backdropFilter: 'blur(10px)',
                     WebkitBackdropFilter: 'blur(10px)',
                     color: '#ffffff',
-                    padding: '0.4rem 0.85rem',
+                    padding: '0.35rem 0.75rem',
                     borderRadius: '9999px',
-                    fontSize: '0.75rem',
+                    fontSize: '0.725rem',
                     fontWeight: 600,
                     display: 'flex',
                     alignItems: 'center',
@@ -387,18 +396,18 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenResume }) => {
                 )}
               </div>
 
-              {/* Floating Glass Badges around Artwork matching Soham's resume */}
+              {/* Floating Glass Badges around Artwork */}
               <div 
-                className="glass-card animate-float"
+                className="glass-card animate-float hero-badge-top"
                 style={{
                   position: 'absolute',
-                  top: '-1.25rem',
-                  right: '-1rem',
-                  padding: '0.65rem 1rem',
+                  top: '-1rem',
+                  right: '0.5rem',
+                  padding: '0.55rem 0.85rem',
                   display: 'flex',
                   alignItems: 'center',
                   gap: '0.65rem',
-                  borderRadius: '1rem',
+                  borderRadius: '0.85rem',
                   border: '1px solid var(--border-accent)',
                   boxShadow: '0 12px 28px rgba(0,0,0,0.12)',
                   background: 'var(--bg-card-hover)',
@@ -407,35 +416,36 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenResume }) => {
               >
                 <div 
                   style={{
-                    width: '32px',
-                    height: '32px',
+                    width: '30px',
+                    height: '30px',
                     borderRadius: '8px',
                     background: 'rgba(2, 132, 199, 0.15)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    color: 'var(--accent-primary)'
+                    color: 'var(--accent-primary)',
+                    flexShrink: 0
                   }}
                 >
-                  <ShieldCheck size={18} />
+                  <ShieldCheck size={16} />
                 </div>
                 <div>
-                  <div style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--text-primary)' }}>Blockchain & Web3</div>
-                  <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>Solidity · Ethereum · Smart Contracts</div>
+                  <div style={{ fontSize: '0.775rem', fontWeight: 700, color: 'var(--text-primary)' }}>Blockchain & Web3</div>
+                  <div style={{ fontSize: '0.675rem', color: 'var(--text-muted)' }}>Solidity · Ethereum · Smart Contracts</div>
                 </div>
               </div>
 
               <div 
-                className="glass-card animate-float"
+                className="glass-card animate-float hero-badge-bottom"
                 style={{
                   position: 'absolute',
-                  bottom: '-1.5rem',
-                  left: '-1rem',
-                  padding: '0.65rem 1rem',
+                  bottom: '-1.25rem',
+                  left: '0.5rem',
+                  padding: '0.55rem 0.85rem',
                   display: 'flex',
                   alignItems: 'center',
                   gap: '0.65rem',
-                  borderRadius: '1rem',
+                  borderRadius: '0.85rem',
                   border: '1px solid var(--border-accent)',
                   boxShadow: '0 12px 28px rgba(0,0,0,0.12)',
                   background: 'var(--bg-card-hover)',
@@ -445,21 +455,22 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenResume }) => {
               >
                 <div 
                   style={{
-                    width: '32px',
-                    height: '32px',
+                    width: '30px',
+                    height: '30px',
                     borderRadius: '8px',
                     background: 'rgba(56, 189, 248, 0.15)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    color: 'var(--accent-primary)'
+                    color: 'var(--accent-primary)',
+                    flexShrink: 0
                   }}
                 >
-                  <Bot size={18} />
+                  <Bot size={16} />
                 </div>
                 <div>
-                  <div style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--text-primary)' }}>RPA & Process Automation</div>
-                  <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>UiPath Studio · Bot Workflows</div>
+                  <div style={{ fontSize: '0.775rem', fontWeight: 700, color: 'var(--text-primary)' }}>RPA & Process Automation</div>
+                  <div style={{ fontSize: '0.675rem', color: 'var(--text-muted)' }}>UiPath Studio · Bot Workflows</div>
                 </div>
               </div>
 
@@ -470,7 +481,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenResume }) => {
                   alignItems: 'center',
                   justifyContent: 'space-between',
                   padding: '0.75rem 0.5rem 0.25rem 0.5rem',
-                  fontSize: '0.8rem',
+                  fontSize: '0.775rem',
                   color: 'var(--text-muted)'
                 }}
               >
@@ -517,6 +528,40 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenResume }) => {
         </div>
 
       </div>
+
+      <style>{`
+        @media (max-width: 900px) {
+          .hero-grid {
+            grid-template-columns: 1fr !important;
+            gap: 2.5rem !important;
+          }
+          .hero-artwork-card {
+            max-width: 500px !important;
+            margin: 0 auto;
+          }
+          .hero-cta-group {
+            gap: 0.65rem !important;
+          }
+          .hero-btn {
+            flex: 1 1 auto;
+          }
+        }
+        @media (max-width: 600px) {
+          .hero-metrics-bar {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 0.85rem !important;
+          }
+          .hero-badge-top {
+            display: none !important;
+          }
+          .hero-badge-bottom {
+            display: none !important;
+          }
+          .hero-btn {
+            width: 100% !important;
+          }
+        }
+      `}</style>
     </section>
   );
 };

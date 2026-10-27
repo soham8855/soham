@@ -243,6 +243,20 @@ export const CertificationsSection: React.FC = () => {
         </div>
 
       </div>
+
+      <style>{`
+        @media (max-width: 768px) {
+          .cert-card-grid {
+            grid-template-columns: 1fr !important;
+            padding: 1.5rem 1.15rem !important;
+            border-radius: 1rem !important;
+          }
+          .cert-banner {
+            padding: 1.25rem 1rem !important;
+            border-radius: 1rem !important;
+          }
+        }
+      `}</style>
     </section>
   );
 };

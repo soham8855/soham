@@ -168,6 +168,25 @@ export const Footer: React.FC = () => {
         </div>
 
       </div>
+
+      <style>{`
+        @media (max-width: 880px) {
+          .footer-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 2rem !important;
+          }
+        }
+        @media (max-width: 550px) {
+          .site-footer {
+            padding: 2.75rem 0 1.5rem 0 !important;
+          }
+          .footer-grid {
+            grid-template-columns: 1fr !important;
+            gap: 1.75rem !important;
+            margin-bottom: 2rem !important;
+          }
+        }
+      `}</style>
     </footer>
   );
 };

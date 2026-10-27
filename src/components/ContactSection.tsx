@@ -508,6 +508,25 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onShowToast }) =
         </div>
 
       </div>
+
+      <style>{`
+        @media (max-width: 880px) {
+          .contact-grid {
+            grid-template-columns: 1fr !important;
+            gap: 2rem !important;
+          }
+        }
+        @media (max-width: 640px) {
+          .contact-card {
+            padding: 1.25rem 1rem !important;
+            border-radius: 1rem !important;
+          }
+          .contact-form-card {
+            padding: 1.5rem 1.15rem !important;
+            border-radius: 1rem !important;
+          }
+        }
+      `}</style>
     </section>
   );
 };

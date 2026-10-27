@@ -261,7 +261,7 @@ export const AboutSection: React.FC = () => {
             className="areas-interest-grid"
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(4, 1fr)',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 250px), 1fr))',
               gap: '1.25rem'
             }}
           >
@@ -308,6 +308,25 @@ export const AboutSection: React.FC = () => {
         </div>
 
       </div>
+
+      <style>{`
+        @media (max-width: 900px) {
+          .about-split-grid {
+            grid-template-columns: 1fr !important;
+            gap: 2rem !important;
+          }
+        }
+        @media (max-width: 640px) {
+          .about-card {
+            padding: 1.5rem 1.15rem !important;
+            border-radius: 1rem !important;
+          }
+          .interest-card {
+            padding: 1.25rem 1rem !important;
+            border-radius: 1rem !important;
+          }
+        }
+      `}</style>
     </section>
   );
 };

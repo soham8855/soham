@@ -297,6 +297,27 @@ export const SkillsSection: React.FC = () => {
         </div>
 
       </div>
+
+      <style>{`
+        @media (max-width: 860px) {
+          .skills-grid {
+            grid-template-columns: 1fr !important;
+          }
+          .skills-search-box {
+            max-width: 100% !important;
+          }
+        }
+        @media (max-width: 640px) {
+          .skill-cat-card {
+            padding: 1.25rem 1rem !important;
+            border-radius: 1rem !important;
+          }
+          .skills-stack-footer {
+            padding: 1.25rem 1rem !important;
+            border-radius: 1rem !important;
+          }
+        }
+      `}</style>
     </section>
   );
 };

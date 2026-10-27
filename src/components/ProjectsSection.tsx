@@ -39,8 +39,21 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenDemo }) 
             Authentic implementations extracted from my academic resume, highlighting database automation and decentralized security systems.
           </p>
 
-          {/* Quick Filter Tabs - Exact Desktop Inline Flex */}
-          <div style={{ display: 'inline-flex', gap: '0.5rem', background: 'var(--bg-card)', padding: '0.35rem', borderRadius: '0.75rem', border: '1px solid var(--border-subtle)', boxShadow: '0 4px 15px rgba(0,0,0,0.04)' }}>
+          {/* Quick Filter Tabs */}
+          <div 
+            className="projects-filter-bar"
+            style={{ 
+              display: 'inline-flex', 
+              flexWrap: 'wrap',
+              justifyContent: 'center',
+              gap: '0.5rem', 
+              background: 'var(--bg-card)', 
+              padding: '0.35rem', 
+              borderRadius: '0.75rem', 
+              border: '1px solid var(--border-subtle)', 
+              boxShadow: '0 4px 15px rgba(0,0,0,0.04)' 
+            }}
+          >
             <button
               onClick={() => setProjectFilter('all')}
               className={projectFilter === 'all' ? 'btn-primary' : 'btn-secondary'}
@@ -65,8 +78,9 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenDemo }) 
           </div>
         </div>
 
-        {/* Projects Grid - Exact Desktop 2-Column Grid */}
+        {/* Projects Grid */}
         <div 
+          className="projects-grid"
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(2, 1fr)',
@@ -76,7 +90,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenDemo }) 
           {filteredProjects.map((project, index) => (
             <div 
               key={project.id}
-              className="glass-card"
+              className="glass-card project-card"
               style={{
                 display: 'flex',
                 flexDirection: 'column',
@@ -237,6 +251,21 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenDemo }) 
         project={selectedProject} 
         onClose={() => setSelectedProject(null)} 
       />
+
+      <style>{`
+        @media (max-width: 880px) {
+          .projects-grid {
+            grid-template-columns: 1fr !important;
+            gap: 1.75rem !important;
+          }
+        }
+        @media (max-width: 640px) {
+          .project-card {
+            padding: 1.5rem 1.15rem !important;
+            border-radius: 1rem !important;
+          }
+        }
+      `}</style>
     </section>
   );
 };
