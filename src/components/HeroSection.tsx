@@ -16,6 +16,7 @@ interface HeroSectionProps {
 
 export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenResume }) => {
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
+  const [isHoveringScreen, setIsHoveringScreen] = useState(false);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -269,15 +270,15 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenResume }) => {
                   width: '100%',
                   borderRadius: '1.15rem',
                   overflow: 'hidden',
-                  aspectRatio: '16 / 10.5',
+                  aspectRatio: '650 / 433',
                   background: 'linear-gradient(135deg, #d2dbe5 0%, #eef3f7 100%)',
                   boxShadow: 'inset 0 0 20px rgba(0,0,0,0.06)'
                 }}
               >
-                {/* Reference Image - High Fidelity Rendering */}
+                {/* Reference Image with Soham's Actual Resume on Laptop Screen */}
                 <img
                   src={heroReferenceImg}
-                  alt="Soham Vijay Gurav - Futuristic Cyber & Software Systems Reference"
+                  alt="Soham Vijay Gurav - Futuristic Cyber & Software Systems Reference with Resume on Laptop Screen"
                   style={{
                     width: '100%',
                     height: '100%',
@@ -303,7 +304,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenResume }) => {
                     position: 'absolute',
                     top: '1rem',
                     left: '1rem',
-                    background: 'rgba(15, 23, 42, 0.7)',
+                    background: 'rgba(15, 23, 42, 0.75)',
                     backdropFilter: 'blur(10px)',
                     WebkitBackdropFilter: 'blur(10px)',
                     color: '#ffffff',
@@ -326,8 +327,64 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenResume }) => {
                     }}
                     className="animate-pulse-glow"
                   />
-                  <span>FUTURE-READY TECH ARCHITECTURE</span>
+                  <span>PORTFOLIO RESUME DISPLAY · ADCET CSE</span>
                 </div>
+
+                {/* Interactive Laptop Screen Glow & Click-to-Expand Layer */}
+                <button
+                  type="button"
+                  onClick={onOpenResume}
+                  onMouseEnter={() => setIsHoveringScreen(true)}
+                  onMouseLeave={() => setIsHoveringScreen(false)}
+                  title="Click laptop display to open full interactive resume"
+                  aria-label="Open Soham Vijay Gurav Full Resume"
+                  style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%',
+                    clipPath: 'polygon(67.2% 48.3%, 92.5% 49.0%, 91.4% 75.1%, 66.2% 71.4%)',
+                    background: isHoveringScreen 
+                      ? 'rgba(14, 165, 233, 0.22)' 
+                      : 'transparent',
+                    boxShadow: isHoveringScreen ? '0 0 25px rgba(56, 189, 248, 0.5)' : 'none',
+                    cursor: 'pointer',
+                    border: 'none',
+                    outline: 'none',
+                    padding: 0,
+                    margin: 0,
+                    transition: 'all 0.25s ease',
+                    zIndex: 15
+                  }}
+                />
+
+                {/* Hover prompt tooltip badge for laptop resume */}
+                {isHoveringScreen && (
+                  <div
+                    style={{
+                      position: 'absolute',
+                      top: '40%',
+                      right: '6%',
+                      background: 'rgba(15, 23, 42, 0.92)',
+                      color: '#ffffff',
+                      padding: '0.45rem 0.85rem',
+                      borderRadius: '0.6rem',
+                      fontSize: '0.75rem',
+                      fontWeight: 600,
+                      boxShadow: '0 8px 24px rgba(0,0,0,0.3)',
+                      border: '1px solid var(--accent-primary)',
+                      pointerEvents: 'none',
+                      zIndex: 25,
+                      animation: 'fadeIn 0.2s ease-out',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '0.4rem'
+                    }}
+                  >
+                    <span>Click Laptop to View Full CV</span>
+                  </div>
+                )}
               </div>
 
               {/* Floating Glass Badges around Artwork matching Soham's resume */}
