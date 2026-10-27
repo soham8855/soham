@@ -149,7 +149,7 @@ export const SkillsSection: React.FC = () => {
           className="skills-grid"
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 320px), 1fr))',
+            gridTemplateColumns: 'repeat(2, 1fr)',
             gap: '1.5rem'
           }}
         >
@@ -297,22 +297,6 @@ export const SkillsSection: React.FC = () => {
         </div>
 
       </div>
-
-      <style>{`
-        @media (max-width: 640px) {
-          .skill-cat-card {
-            padding: 1.25rem 1rem !important;
-            border-radius: 1rem !important;
-          }
-          .skills-search-box {
-            max-width: 100% !important;
-          }
-          .skills-stack-footer {
-            padding: 1.25rem 1rem !important;
-            border-radius: 1rem !important;
-          }
-        }
-      `}</style>
     </section>
   );
 };

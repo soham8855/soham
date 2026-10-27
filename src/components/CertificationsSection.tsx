@@ -43,7 +43,7 @@ export const CertificationsSection: React.FC = () => {
                 padding: '2.5rem',
                 borderTop: '4px solid #10b981',
                 display: 'grid',
-                gridTemplateColumns: '1fr',
+                gridTemplateColumns: '1.6fr 1fr',
                 gap: '2rem',
                 alignItems: 'center'
               }}
@@ -243,24 +243,6 @@ export const CertificationsSection: React.FC = () => {
         </div>
 
       </div>
-
-      <style>{`
-        @media (min-width: 768px) {
-          .cert-card-grid {
-            grid-template-columns: 1.6fr 1fr !important;
-          }
-        }
-        @media (max-width: 640px) {
-          .cert-card-grid {
-            padding: 1.5rem 1.15rem !important;
-            border-radius: 1rem !important;
-          }
-          .cert-banner {
-            padding: 1.25rem 1rem !important;
-            border-radius: 1rem !important;
-          }
-        }
-      `}</style>
     </section>
   );
 };

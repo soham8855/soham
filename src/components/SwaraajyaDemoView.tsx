@@ -731,21 +731,6 @@ export const SwaraajyaDemoView: React.FC<SwaraajyaDemoViewProps> = ({ onBack }) 
           </div>
         </div>
       )}
-
-      <style>{`
-        @media (max-width: 640px) {
-          .demo-header {
-            padding: 0.75rem 0.85rem !important;
-          }
-          .demo-nav-tabs {
-            width: 100% !important;
-          }
-          .demo-card {
-            padding: 1.25rem 1rem !important;
-            border-radius: 1rem !important;
-          }
-        }
-      `}</style>
     </div>
   );
 };

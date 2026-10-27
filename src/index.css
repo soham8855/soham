@@ -152,41 +152,10 @@ button {
   padding: 0 1.5rem;
 }
 
-@media (max-width: 640px) {
-  .container {
-    padding: 0 1.15rem;
-  }
-}
-
-@media (max-width: 380px) {
-  .container {
-    padding: 0 0.85rem;
-  }
-}
-
-@media (min-width: 1440px) {
-  .container {
-    max-width: 1320px;
-    padding: 0 2rem;
-  }
-}
-
 .section-wrapper {
   position: relative;
   padding: 5.5rem 0;
   z-index: 10;
-}
-
-@media (max-width: 768px) {
-  .section-wrapper {
-    padding: 3.75rem 0;
-  }
-}
-
-@media (max-width: 480px) {
-  .section-wrapper {
-    padding: 3rem 0;
-  }
 }
 
 /* Section Headers */
@@ -208,15 +177,8 @@ button {
   max-width: 100%;
 }
 
-@media (max-width: 480px) {
-  .section-tag {
-    font-size: 0.75rem;
-    padding: 0.35rem 0.8rem;
-  }
-}
-
 .section-title {
-  font-size: clamp(1.85rem, 6vw, 2.85rem);
+  font-size: 2.85rem;
   font-weight: 700;
   margin-bottom: 0.85rem;
   color: var(--text-primary);
@@ -224,17 +186,11 @@ button {
 }
 
 .section-subtitle {
-  font-size: clamp(0.925rem, 2.5vw, 1.05rem);
+  font-size: 1.05rem;
   color: var(--text-secondary);
   max-width: 640px;
   margin: 0 auto 2.75rem auto;
   line-height: 1.65;
-}
-
-@media (max-width: 480px) {
-  .section-subtitle {
-    margin-bottom: 1.75rem;
-  }
 }
 
 .text-center {
